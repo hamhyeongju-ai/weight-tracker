@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 const STORAGE_KEY = "weight-log-entries-v3";
-const SETTINGS_KEY = "weight-tracker-settings-v3";
+const SETTINGS_KEY = "weight-tracker-settings-v4";
 
 const INITIAL_DATA = [
   { date: "2026-04-02", weight: 74.2, id: 1 },
@@ -45,14 +45,14 @@ function bmiCategory(bmi) {
 
 export default function WeightTracker() {
   const [entries, setEntries] = useState([]);
-  const [settings, setSettings] = useState({ height: "", goalWeight: "" });
+  const [settings, setSettings] = useState({ height: "", goalWeight: "", name: "" });
   const [inputWeight, setInputWeight] = useState("");
   const [inputDate, setInputDate] = useState(getTodayStr());
   const [loaded, setLoaded] = useState(false);
   const [toast, setToast] = useState(null);
   const [activeTab, setActiveTab] = useState("chart");
   const [showSettings, setShowSettings] = useState(false);
-  const [settingDraft, setSettingDraft] = useState({ height: "", goalWeight: "" });
+  const [settings, setSettings] = useState({ height: "", goalWeight: "", name: "" });
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -125,7 +125,7 @@ export default function WeightTracker() {
     if (settingDraft.goalWeight && (isNaN(g) || g < 20 || g > 300)) {
       showToast("목표 체중을 올바르게 입력해 주세요", "error"); return;
     }
-    const newS = { height: settingDraft.height, goalWeight: settingDraft.goalWeight };
+    const newS = { height: settingDraft.height, goalWeight: settingDraft.goalWeight, name: settingDraft.name };
     setSettings(newS);
     persist(undefined, newS);
     setShowSettings(false);
@@ -192,7 +192,10 @@ export default function WeightTracker() {
         <div style={st.overlay} onClick={() => setShowSettings(false)}>
           <div style={st.modal} onClick={(e) => e.stopPropagation()}>
             <div style={st.modalTitle}>⚙️ 내 정보 설정</div>
-            <label style={st.mlabel}>키 (cm)</label>
+            <label style={st.mlabel}>이름</label>
+<input style={st.minput} type="text" placeholder="예: 형주" value={settingDraft.name}
+  onChange={(e) => setSettingDraft({ ...settingDraft, name: e.target.value })} />
+<label style={st.mlabel}>키 (cm)</label>
             <input style={st.minput} type="number" placeholder="예: 175" value={settingDraft.height}
               onChange={(e) => setSettingDraft({ ...settingDraft, height: e.target.value })} />
             <label style={st.mlabel}>목표 체중 (kg)</label>
@@ -211,7 +214,7 @@ export default function WeightTracker() {
             <div style={st.logo}>⚖️</div>
             <div>
               <div style={st.title}>체중 기록장</div>
-              <div style={st.subtitle}>형주님의 건강 트래커</div>
+              <div style={st.subtitle}>{settings.name ? `${settings.name}님의 건강 트래커` : "나의 건강 트래커"}</div>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
