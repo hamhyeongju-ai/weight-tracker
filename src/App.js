@@ -313,7 +313,7 @@ export default function WeightTracker() {
 }
 
 const st = {
-  root: { minHeight: "100vh", background: "linear-gradient(135deg,#f8faff,#eff2ff)", fontFamily: "'Noto Sans KR','Apple SD Gothic Neo',sans-serif", padding: "40px 40px 48px" },
+  root: { minHeight: "100vh", background: "linear-gradient(135deg,#f8faff,#eff2ff)", fontFamily: "'Noto Sans KR','Apple SD Gothic Neo',sans-serif", padding: "20px 16px 48px" },
   loading: { display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" },
   spinner: { width: 28, height: 28, border: "3px solid #e0e7ff", borderTop: "3px solid #6366f1", borderRadius: "50%" },
   loginWrap: { display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" },
