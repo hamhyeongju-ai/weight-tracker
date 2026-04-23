@@ -194,25 +194,27 @@ export default function WeightTracker() {
         </div>
       )}
       <div style={st.container}>
-        <div style={st.header}>
-          <div style={st.headerLeft}>
-            <div style={st.logo}>⚖️</div>
-            <div>
-              <div style={st.title}>나 혼자 뺀다!💪</div>
-              <div style={st.subtitle}>{settings.name ? `${settings.name}님의 건강 트래커` : "나의 건강 트래커"}</div>
+       <div style={{ marginBottom: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+            <div style={st.headerLeft}>
+              <div style={st.logo}>⚖️</div>
+              <div>
+                <div style={st.title}>나혼자 뺀다!💪</div>
+                <div style={st.subtitle}>{settings.name ? `${settings.name}님의 건강 트래커` : "나의 건강 트래커"}</div>
+              </div>
+            </div>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button style={st.gearBtn} onClick={() => { setSettingDraft(settings); setShowSettings(true); }}>⚙️</button>
+              <button style={st.logoutBtn} onClick={handleLogout} title="로그아웃">↩</button>
             </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            {latest && (
-              <div style={st.latestBadge}>
-                <span style={st.latestNum}>{latest.weight}</span>
-                <span style={st.latestUnit}>kg</span>
-                {diff !== null && <span style={{ ...st.diffBadge, color: parseFloat(diff) <= 0 ? "#10b981" : "#f87171" }}>{parseFloat(diff) > 0 ? "+" : ""}{diff}</span>}
-              </div>
-            )}
-            <button style={st.gearBtn} onClick={() => { setSettingDraft(settings); setShowSettings(true); }}>⚙️</button>
-            <button style={st.logoutBtn} onClick={handleLogout} title="로그아웃">↩</button>
-          </div>
+          {latest && (
+            <div style={st.latestBadge}>
+              <span style={st.latestNum}>{latest.weight}</span>
+              <span style={st.latestUnit}>kg</span>
+              {diff !== null && <span style={{ ...st.diffBadge, color: parseFloat(diff) <= 0 ? "#10b981" : "#f87171" }}>{parseFloat(diff) > 0 ? "+" : ""}{diff}</span>}
+            </div>
+          )}
         </div>
         {settings.height && latest && (
           <div style={st.bmiCard}>
