@@ -155,7 +155,7 @@ export default function WeightTracker() {
       <div style={st.loginWrap}>
         <div style={st.loginBox}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>⚖️</div>
-          <div style={st.title}>나혼자 뺀다!💪</div>
+          <div style={st.title}>나 혼자 뺀다!💪</div>
           <div style={{ fontSize: 14, color: "#94a3b8", margin: "8px 0 32px" }}>구글 계정으로 로그인하면<br />어디서든 내 기록을 볼 수 있어요</div>
           <button onClick={handleGoogleLogin} style={st.googleBtn}>
             <svg width="18" height="18" viewBox="0 0 18 18" style={{ marginRight: 10 }}>
@@ -198,7 +198,7 @@ export default function WeightTracker() {
           <div style={st.headerLeft}>
             <div style={st.logo}>⚖️</div>
             <div>
-              <div style={st.title}>나혼자 뺀다!💪</div>
+              <div style={st.title}>나 혼자 뺀다!💪</div>
               <div style={st.subtitle}>{settings.name ? `${settings.name}님의 건강 트래커` : "나의 건강 트래커"}</div>
             </div>
           </div>
