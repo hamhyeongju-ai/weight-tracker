@@ -336,7 +336,7 @@ const st = {
   logo: { fontSize: 30 },
   title: { fontSize: 21, fontWeight: 800, color: "#1e1b4b", letterSpacing: "-0.5px" },
   subtitle: { fontSize: 12, color: "#94a3b8", marginTop: 1 },
-  latestBadge: { background: "#fff", borderRadius: 14, padding: "7px 14px", boxShadow: "0 2px 12px rgba(99,102,241,0.12)", display: "flex", alignItems: "baseline", gap: 4 },
+  latestBadge: { background: "#fff", borderRadius: 14, padding: "10px 18px", boxShadow: "0 2px 12px rgba(99,102,241,0.12)", display: "inline-flex", alignItems: "baseline", gap: 4 },
   latestNum: { fontSize: 24, fontWeight: 800, color: "#4338ca" },
   latestUnit: { fontSize: 12, color: "#94a3b8", fontWeight: 500 },
   diffBadge: { fontSize: 12, fontWeight: 700, marginLeft: 4 },
