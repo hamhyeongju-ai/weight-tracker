@@ -403,7 +403,7 @@ export default function WeightTracker() {
 }
 
 const st = {
-  root: { minHeight: "100vh", background: "linear-gradient(135deg,#f8faff,#eff2ff)", fontFamily: "'Noto Sans KR','Apple SD Gothic Neo',sans-serif", padding: "20px 16px 48px" },
+  root: { minHeight: "100vh", background: "linear-gradient(135deg,#f8faff,#eff2ff)", fontFamily: "'Noto Sans KR','Apple SD Gothic Neo',sans-serif", padding: "40px 40px 48px" },
   loading: { display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" },
   spinner: { width: 28, height: 28, border: "3px solid #e0e7ff", borderTop: "3px solid #6366f1", borderRadius: "50%", animation: "spin 0.8s linear infinite" },
   toast: { position: "fixed", top: 20, left: "50%", transform: "translateX(-50%)", color: "#fff", padding: "10px 22px", borderRadius: 99, fontSize: 14, fontWeight: 600, zIndex: 9999, boxShadow: "0 4px 20px rgba(0,0,0,0.18)" },
@@ -415,7 +415,7 @@ const st = {
   mbtns: { display: "flex", gap: 10, marginTop: 4 },
   cancelBtn: { flex: 1, padding: "10px", border: "1.5px solid #e0e7ff", borderRadius: 10, background: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", color: "#64748b", fontFamily: "inherit" },
   saveBtn: { flex: 1, border: "none", borderRadius: 10, background: "#6366f1", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", padding: "10px" },
-  container: { maxWidth: 540, margin: "0 auto" },
+  container: { maxWidth: 900, margin: "0 auto" },
   header: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 },
   headerLeft: { display: "flex", alignItems: "center", gap: 12 },
   logo: { fontSize: 30 },
