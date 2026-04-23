@@ -215,24 +215,62 @@ export default function WeightTracker() {
                 <span style={st.latestUnit}>kg</span>
                 {diff !== null && <span style={{ ...st.diffBadge, color: parseFloat(diff) <= 0 ? "#10b981" : "#f87171" }}>{parseFloat(diff) > 0 ? "+" : ""}{diff}</span>}
               </div>
-              <div style={{ fontSize: 13, fontWeight: 600, color: "#6366f1", lineHeight: 1.4 }}>
+             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 {(() => {
-                  if (goalW && toGoal !== null) {
-                    const gap = parseFloat(toGoal);
-                    if (gap <= 0) return "🎉 목표 달성! 대단해요!";
-                    if (gap <= 1) return "🔥 거의 다 왔어요!";
-                    if (gap <= 3) return "💪 조금만 더 힘내요!";
-                    if (gap <= 5) return "😤 할 수 있어요!";
-                    return "🚀 오늘도 파이팅!";
-                  }
-                  if (diff !== null) {
-                    const d = parseFloat(diff);
-                    if (d < -0.5) return "📉 잘 빠지고 있어요!";
-                    if (d < 0) return "😊 좋은 흐름이에요!";
-                    if (d === 0) return "😐 유지 중이에요!";
-                    return "😅 괜찮아요, 내일 또 도전!";
-                  }
-                  return "👋 오늘도 기록해요!";
+                  const msg = (() => {
+                    if (goalW && toGoal !== null) {
+                      const gap = parseFloat(toGoal);
+                      if (gap <= 0) return "🎉 목표 달성! 대단해요!";
+                      if (gap <= 1) return "🔥 거의 다 왔어요!";
+                      if (gap <= 3) return "💪 조금만 더 힘내요!";
+                      if (gap <= 5) return "😤 할 수 있어요!";
+                      return "🚀 오늘도 파이팅!";
+                    }
+                    if (diff !== null) {
+                      const d = parseFloat(diff);
+                      if (d < -0.5) return "📉 잘 빠지고 있어요!";
+                      if (d < 0) return "😊 좋은 흐름이에요!";
+                      if (d === 0) return "😐 유지 중이에요!";
+                      return "😅 괜찮아요, 내일 또 도전!";
+                    }
+                    return "👋 오늘도 기록해요!";
+                  })();
+                  const streak = (() => {
+                    if (entries.length === 0) return 0;
+                    const sorted = [...entries].sort((a, b) => b.date.localeCompare(a.date));
+                    let count = 1;
+                    for (let i = 0; i < sorted.length - 1; i++) {
+                      const curr = new Date(sorted[i].date);
+                      const next = new Date(sorted[i + 1].date);
+                      const diffDay = (curr - next) / (1000 * 60 * 60 * 24);
+                      if (diffDay <= 2) count++;
+                      else break;
+                    }
+                    return count;
+                  })();
+                  const weekEntries = entries.filter(e => {
+                    const d = new Date(e.date);
+                    const now = new Date();
+                    return (now - d) / (1000 * 60 * 60 * 24) <= 7;
+                  });
+                  const weekAvg = weekEntries.length > 0
+                    ? (weekEntries.reduce((s, e) => s + e.weight, 0) / weekEntries.length).toFixed(1)
+                    : null;
+                  return (
+                    <>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: "#6366f1" }}>{msg}</div>
+                      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                        <div style={{ background: "#fff7ed", borderRadius: 8, padding: "4px 10px", fontSize: 12, fontWeight: 700, color: "#ea580c" }}>
+                          🔥 {streak}일 연속 기록 중
+                        </div>
+                        {weekAvg && (
+                          <div style={{ background: "#eff6ff", borderRadius: 8, padding: "4px 10px", fontSize: 12, fontWeight: 700, color: "#3b82f6" }}>
+                            📊 이번 주 평균 {weekAvg}kg
+                          </div>
+                        )}
+                      </div>
+                    </>
+                  );
                 })()}
               </div>
             </div>
