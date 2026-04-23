@@ -208,11 +208,33 @@ export default function WeightTracker() {
               <button style={st.logoutBtn} onClick={handleLogout} title="로그아웃">↩</button>
             </div>
           </div>
-          {latest && (
-            <div style={st.latestBadge}>
-              <span style={st.latestNum}>{latest.weight}</span>
-              <span style={st.latestUnit}>kg</span>
-              {diff !== null && <span style={{ ...st.diffBadge, color: parseFloat(diff) <= 0 ? "#10b981" : "#f87171" }}>{parseFloat(diff) > 0 ? "+" : ""}{diff}</span>}
+       {latest && (
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={st.latestBadge}>
+                <span style={st.latestNum}>{latest.weight}</span>
+                <span style={st.latestUnit}>kg</span>
+                {diff !== null && <span style={{ ...st.diffBadge, color: parseFloat(diff) <= 0 ? "#10b981" : "#f87171" }}>{parseFloat(diff) > 0 ? "+" : ""}{diff}</span>}
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "#6366f1", lineHeight: 1.4 }}>
+                {(() => {
+                  if (goalW && toGoal !== null) {
+                    const gap = parseFloat(toGoal);
+                    if (gap <= 0) return "🎉 목표 달성! 대단해요!";
+                    if (gap <= 1) return "🔥 거의 다 왔어요!";
+                    if (gap <= 3) return "💪 조금만 더 힘내요!";
+                    if (gap <= 5) return "😤 할 수 있어요!";
+                    return "🚀 오늘도 파이팅!";
+                  }
+                  if (diff !== null) {
+                    const d = parseFloat(diff);
+                    if (d < -0.5) return "📉 잘 빠지고 있어요!";
+                    if (d < 0) return "😊 좋은 흐름이에요!";
+                    if (d === 0) return "😐 유지 중이에요!";
+                    return "😅 괜찮아요, 내일 또 도전!";
+                  }
+                  return "👋 오늘도 기록해요!";
+                })()}
+              </div>
             </div>
           )}
         </div>
