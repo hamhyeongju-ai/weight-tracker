@@ -183,9 +183,9 @@ export default function WeightTracker() {
             <label style={st.mlabel}>이름</label>
             <input style={st.minput} type="text" placeholder="예: 형주" value={settingDraft.name} onChange={(e) => setSettingDraft({ ...settingDraft, name: e.target.value })} />
             <label style={st.mlabel}>키 (cm)</label>
-            <input style={st.minput} type="number" placeholder="예: 175" value={settingDraft.height} onChange={(e) => setSettingDraft({ ...settingDraft, height: e.target.value })} />
+            <input style={st.minput} type="number" placeholder="예: 180" value={settingDraft.height} onChange={(e) => setSettingDraft({ ...settingDraft, height: e.target.value })} />
             <label style={st.mlabel}>목표 체중 (kg)</label>
-            <input style={st.minput} type="number" placeholder="예: 70" step="0.1" value={settingDraft.goalWeight} onChange={(e) => setSettingDraft({ ...settingDraft, goalWeight: e.target.value })} />
+            <input style={st.minput} type="number" placeholder="예: 75" step="0.1" value={settingDraft.goalWeight} onChange={(e) => setSettingDraft({ ...settingDraft, goalWeight: e.target.value })} />
             <div style={st.mbtns}>
               <button style={st.cancelBtn} onClick={() => setShowSettings(false)}>취소</button>
               <button style={st.saveBtn} onClick={handleSaveSettings}>저장</button>
