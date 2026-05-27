@@ -16,7 +16,12 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-function getTodayStr() { return new Date().toISOString().split("T")[0]; }
+function getTodayStr() {
+  const d = new Date();
+  const offset = d.getTimezoneOffset();
+  const local = new Date(d.getTime() - offset * 60 * 1000);
+  return local.toISOString().split("T")[0];
+}
 function formatDate(dateStr) {
   const d = new Date(dateStr);
   return d.toLocaleDateString("ko-KR", { month: "short", day: "numeric", weekday: "short" });
